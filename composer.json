@@ -1,5 +1,5 @@
 {
-  "name": "intercom-symfony-bundle",
+  "name": "intercom-bundle",
   "license": "MIT",
   "description": "Symfony bundle that integrates Intercom",
   "keywords": ["Intercom", "Symfony", "bundle"],
