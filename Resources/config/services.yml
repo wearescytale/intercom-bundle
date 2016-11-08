@@ -1,0 +1,3 @@
+services:
+    scytale_intercom.proxy_service:
+        class: Scytale\Bundle\IntercomBundle\Service\IntercomProxyService

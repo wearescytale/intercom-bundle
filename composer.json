@@ -1,0 +1,27 @@
+{
+  "name": "intercom-symfony-bundle",
+  "license": "MIT",
+  "description": "Symfony bundle that integrates Intercom",
+  "keywords": ["Intercom", "Symfony", "bundle"],
+  "type": "symfony-bundle",
+  "authors": [
+    {
+      "name": "Eduardo Conceição",
+      "email": "eduardo.conceicao@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Scytale\\Bundle\\IntercomBundle\\": ""
+    }
+  },
+  "require": {
+    "php": ">=5.5.0",
+    "symfony/framework-bundle": ">=2.3",
+    "intercom/intercom-php": "3.1.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*"
+  },
+  "minimum-stability": "stable"
+}

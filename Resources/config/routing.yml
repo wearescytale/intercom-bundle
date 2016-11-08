@@ -1,0 +1,3 @@
+#scytale_intercom_homepage:
+#    path:     /
+#    defaults: { _controller: ScytaleIntercomBundle:Default:index }
