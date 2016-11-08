@@ -1,5 +1,5 @@
 {
-  "name": "scytale/intercom-bundle",
+  "name": "wearescytale/intercom-bundle",
   "license": "MIT",
   "description": "Symfony bundle that integrates Intercom",
   "keywords": ["Intercom", "Symfony", "bundle"],
