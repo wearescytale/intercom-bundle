@@ -1,3 +1,5 @@
 services:
-    scytale_intercom.proxy_service:
-        class: Scytale\Bundle\IntercomBundle\Service\IntercomProxyService
+    scytale_intercom.proxy_client:
+        class: Scytale\Bundle\IntercomBundle\Service\IntercomProxyClient
+        arguments:
+            - '%scytale_intercom.credentials.access_token%'

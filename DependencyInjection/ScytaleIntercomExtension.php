@@ -24,5 +24,20 @@ class ScytaleIntercomExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+
+        // Configure bundle parameters from configuration
+        $baseName = "scytale_intercom";
+
+        // Configure credentials params
+        foreach ($config['credentials'] as $key => $value) {
+            $paramName = sprintf(
+                "%s.%s.%s",
+                $baseName,
+                'credentials',
+                $key
+            );
+
+            $container->setParameter($paramName, $value);
+        }
     }
 }
