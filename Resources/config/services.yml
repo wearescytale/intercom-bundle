@@ -2,4 +2,21 @@ services:
     scytale_intercom.proxy_client:
         class: Scytale\Bundle\IntercomBundle\Service\IntercomProxyClient
         arguments:
+            - '@scytale_intercom.service_factory'
+
+    scytale_intercom.service_factory:
+        class: Scytale\Bundle\IntercomBundle\Factory\IntercomServiceFactory
+        arguments:
+            -
+                users: '@scytale_intercom.users_service'
+                tags:  '@scytale_intercom.tags_service'
+
+    scytale_intercom.users_service:
+        class: Scytale\Bundle\IntercomBundle\Service\UsersService
+        arguments:
+            - '%scytale_intercom.credentials.access_token%'
+
+    scytale_intercom.tags_service:
+        class: Scytale\Bundle\IntercomBundle\Service\TagsService
+        arguments:
             - '%scytale_intercom.credentials.access_token%'

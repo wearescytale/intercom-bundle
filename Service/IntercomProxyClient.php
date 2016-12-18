@@ -2,7 +2,7 @@
 
 namespace Scytale\Bundle\IntercomBundle\Service;
 
-use Intercom\IntercomClient;
+use Scytale\Bundle\IntercomBundle\Factory\IntercomServiceFactory;
 
 /**
  * @author Eduardo Conceição <eduardo.conceicao@gmail.com>
@@ -10,56 +10,33 @@ use Intercom\IntercomClient;
 class IntercomProxyClient
 {
     /**
-     * @var IntercomClient
+     * @var IntercomServiceFactory
      */
-    private $client;
+    private $factory;
 
     /**
      * IntercomProxyClient constructor.
      *
-     * @param string $accessToken
+     * @param IntercomServiceFactory $factory
      */
-    public function __construct($accessToken)
+    public function __construct(IntercomServiceFactory $factory)
     {
-        $this->client = new IntercomClient($accessToken, null);
+        $this->factory = $factory;
     }
 
     /**
-     * @param array $data
+     * @return mixed
      */
-    public function createUser(array $data)
+    public function getUsers()
     {
-        if (!isset($data['email'])) {
-
-            return;
-        }
-
-        $this->client->users->create($data);
+        return $this->factory->getUsers();
     }
 
     /**
-     * @return array
+     * @return mixed
      */
-    public function getUserByEmail($email)
+    public function getTags()
     {
-        return $this->client->users->getUsers(["email" => $email]);
-    }
-
-    /**
-     * We'll need an extended scope intercom access token to list all
-     * the users otherwise the intercom server will return an unauthorized
-     * (401) http response
-     *
-     * @return array
-     */
-    public function getAllUsers()
-    {
-        try {
-            $users = $this->client->users->getUsers([]);
-        } catch (\Exception $e) {
-            $users = array();
-        }
-
-        return $users;
+        return $this->factory->getTags();
     }
 }
