@@ -2,6 +2,7 @@
 
 namespace Scytale\Bundle\IntercomBundle\Service;
 
+use GuzzleHttp\Exception\RequestException;
 use Intercom\IntercomClient;
 
 /**
@@ -37,11 +38,38 @@ class UsersService
     /**
      * @param string $email
      *
-     * @return array
+     * @return array|null
      */
     public function getUserByEmail($email)
     {
-        return $this->client->users->getUsers(["email" => $email]);
+        try {
+            $user = $this->client->users->getUsers(["email" => $email]);
+        } catch (RequestException $exception) {
+            $user = null;
+        }
+
+        return $user;
+    }
+
+    /**
+     * @param array $emails
+     *
+     * @return array|null
+     */
+    public function getUsersByEmail($emails)
+    {
+        try {
+            $userEmails = array();
+            foreach ($emails as $email) {
+                $userEmails[] = ['email' => $email];
+            }
+
+            $users = $this->client->users->getUsers($userEmails);
+        } catch (RequestException $exception) {
+            $users = array();
+        }
+
+        return $users;
     }
 
     /**
