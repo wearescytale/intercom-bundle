@@ -31,41 +31,47 @@ class TagsService
 
     /**
      * @param string $tagName
-     * @param array  $criteria
+     * @param array  $users
      *
      * @return mixed
      */
-    private function tagUser($tagName, $criteria)
+    private function tagUser($tagName, $users)
     {
         return $this->client->tags->tag([
             "name"  => $tagName,
-            "users" => [$criteria]
+            "users" => $users
         ]);
     }
 
     /**
      * @param string $tagName
-     * @param string $email
+     * @param array  $emails
      *
      * @return mixed
      */
-    public function tagUserByEmail($tagName, $email)
+    public function tagUsersByEmail($tagName, array $emails)
     {
-        $criteria = ['email' => $email];
+        $users = array();
+        foreach ($emails as $email) {
+            $users[] = ['email' => $email];
+        }
 
-        return $this->tagUser($tagName, $criteria);
+        return $this->tagUser($tagName, $users);
     }
 
     /**
      * @param string $tagName
-     * @param string $userId
+     * @param array  $userIds
      *
      * @return mixed
      */
-    public function tagUserById($tagName, $userId)
+    public function tagUsersById($tagName, array $userIds)
     {
-        $criteria = ['id' => $userId];
+        $users = array();
+        foreach ($userIds as $id) {
+            $users[] = ['id' => $id];
+        }
 
-        return $this->tagUser($tagName, $criteria);
+        return $this->tagUser($tagName, $users);
     }
 }
