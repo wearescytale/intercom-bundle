@@ -89,4 +89,23 @@ class UsersService
 
         return $users;
     }
+
+    /**
+     * updateBulkUsers
+     *
+     * Example request
+     *
+     * $client->bulk->users([
+     *      "items" => [
+     *          ["method" => "post","data_type" => "user","data" => ['email' => 'test1@intercom.io']],
+     *          ["method" => "post","data_type" => "user","data" => ['email' => 'test2@intercom.io']]
+     *      ]
+     * ]);
+     *
+     * @param array $data
+     */
+    public function updateUsersBulk(array $data)
+    {
+        $this->client->bulk->users(["items" => $data]);
+    }
 }
